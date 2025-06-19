@@ -1,3 +1,4 @@
 # project-template
 
-Template for projects
+Battleship, final project from javascript course..
+Using Test Driven Development
