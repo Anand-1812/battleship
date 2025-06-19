@@ -2,6 +2,7 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "Battleship game, final project",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -11,7 +12,7 @@
       "^.+\\.[jt]sx?$": "babel-jest"
     }
   },
-  "keywords": [],
+  "keywords": [], 
   "author": "",
   "license": "ISC",
   "devDependencies": {
