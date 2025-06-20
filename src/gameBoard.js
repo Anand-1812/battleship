@@ -54,4 +54,8 @@ export class GameBoard {
     missedShots.push([x, y]);
     return "miss";
   }
+
+  allshipSunks() {
+    return this.ships.every(({ ship }) => ship.isSunk);
+  }
 }
