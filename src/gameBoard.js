@@ -5,6 +5,8 @@ export class GameBoard {
   constructor() {
     this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
     this.ships = [];
+    this.missedShots = [];
+    this.attacked = new Set();
   }
 
   // places the ships in the grid
@@ -32,17 +34,24 @@ export class GameBoard {
   }
 
   recieveAttack(x, y) {
+    const key = `${x}, ${y}`;
+    if (this.attacked.has(key)) {
+      throw new Error(`Coordinates (${x}, ${y}) has already been attacked.`);
+    }
+    this.attacked.add(key);
+
     if (!missedShots) this.missedShots = [];
 
     for (const {ship, coordinates} of this.ships) {
-      for (const {row, col} of coordinates) {
+      for (const [row, col] of coordinates) {
         if (row === x && col === y) {
           ship.hit();
-          return;
+          return "hit";
         }
       }
     }
 
     missedShots.push([x, y]);
+    return "mis";
   }
 }
