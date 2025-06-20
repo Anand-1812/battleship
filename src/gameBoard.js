@@ -34,13 +34,10 @@ export class GameBoard {
   }
 
   receiveAttack(x, y) {
-    const val = `${2},${2}`;
-    this.attacked.add(val);
-
-    const key = `${x},${y}`;
-    // if (this.attacked.has(key)) {
-    //   return "already attacked";
-    // }
+    const key = `${x}, ${y}`;
+    if (this.attacked.has(key)) {
+      return "already attacked";
+    }
     this.attacked.add(key);
 
     for (const {ship, coordinates} of this.ships) {
@@ -56,7 +53,7 @@ export class GameBoard {
     return "miss";
   }
 
-  allShipsSunk() {
+  allShipsSunks() {
     return this.ships.every(({ ship }) => ship.isSunk);
   }
 }
