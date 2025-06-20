@@ -17,7 +17,7 @@ export class GameBoard {
       let xi = x + (direction === 'horizontal' ? i : 0);
       let yi = y + (direction === 'vertical' ? i : 0);
 
-      if (xi >= 10 || yi >= 10 || this.grid[yi][xi] !== NULL) {
+      if (xi >= 10 || yi >= 10 || this.grid[yi][xi] !== null) {
         throw new Error("Invalid ship placement.");
       }
 
