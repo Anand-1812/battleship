@@ -36,7 +36,7 @@ export class GameBoard {
   recieveAttack(x, y) {
     const key = `${x}, ${y}`;
     if (this.attacked.has(key)) {
-      throw new Error(`Coordinates (${x}, ${y}) has already been attacked.`);
+      return "already attacked";
     }
     this.attacked.add(key);
 
@@ -52,6 +52,6 @@ export class GameBoard {
     }
 
     missedShots.push([x, y]);
-    return "mis";
+    return "miss";
   }
 }
