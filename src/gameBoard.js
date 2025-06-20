@@ -3,7 +3,7 @@ import { Ship } from "./ship";
 // Game Board Class
 export class GameBoard {
   constructor() {
-    this.grid = Array.from({ length: 10}, Array(10).fill(null));
+    this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
     this.ships = [];
   }
 
@@ -32,9 +32,17 @@ export class GameBoard {
   }
 
   recieveAttack(x, y) {
-    missedShots = [];
+    if (!missedShots) this.missedShots = [];
 
-    
+    for (const {ship, coordinates} of this.ships) {
+      for (const {row, col} of coordinates) {
+        if (row === x && col === y) {
+          ship.hit();
+          return;
+        }
+      }
+    }
 
+    missedShots.push([x, y]);
   }
 }
