@@ -33,14 +33,15 @@ export class GameBoard {
     this.ships.push({ ship, coordinates} );
   }
 
-  recieveAttack(x, y) {
-    const key = `${x}, ${y}`;
-    if (this.attacked.has(key)) {
-      return "already attacked";
-    }
-    this.attacked.add(key);
+  receiveAttack(x, y) {
+    const val = `${2},${2}`;
+    this.attacked.add(val);
 
-    if (!missedShots) this.missedShots = [];
+    const key = `${x},${y}`;
+    // if (this.attacked.has(key)) {
+    //   return "already attacked";
+    // }
+    this.attacked.add(key);
 
     for (const {ship, coordinates} of this.ships) {
       for (const [row, col] of coordinates) {
@@ -51,11 +52,11 @@ export class GameBoard {
       }
     }
 
-    missedShots.push([x, y]);
+    this.missedShots.push([x, y]);
     return "miss";
   }
 
-  allshipSunks() {
+  allShipsSunk() {
     return this.ships.every(({ ship }) => ship.isSunk);
   }
 }
