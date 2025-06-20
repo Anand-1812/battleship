@@ -13,13 +13,11 @@ export class GameBoard {
     const coordinates = [];
 
     for (let i = 0;i < length;i++) {
-      let xi = x;
-      let yi = y;
 
-      if (direction === 'horizontal') xi += 1;
-      else if (direction === 'vertical') yi += 1;
+      let xi = x + (direction === 'horizontal' ? i : 0);
+      let yi = y + (direction === 'vertical' ? i : 0);
 
-      if (xi >= 10 || yi >= 10 || this.grid[xi][yi] !== NULL) {
+      if (xi >= 10 || yi >= 10 || this.grid[yi][xi] !== NULL) {
         throw new Error("Invalid ship placement.");
       }
 
@@ -30,12 +28,13 @@ export class GameBoard {
       this.grid[yi][xi] = ship;
     });
 
-    this.ships.push(ship);
+    this.ships.push({ ship, coordinates} );
   }
 
   recieveAttack(x, y) {
     missedShots = [];
 
     
+
   }
 }
