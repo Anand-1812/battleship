@@ -44,6 +44,15 @@ body {
   padding: 18px;
 }
 
+.user-grid > h2 {
+  margin-bottom: 12px;
+}
+
+
+.bot-grid > h2 {
+  margin-bottom: 12px;
+}
+
 .gridRow {
   display: flex;
 }
