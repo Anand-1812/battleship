@@ -12,12 +12,6 @@ export function createGrid(container, size = 10, isUser = false) {
       colDiv.dataset.row = i;
       colDiv.dataset.col = j;
 
-      if (isUser) {
-        colDiv.addEventListener("click", () => {
-          placeShipoOnClick();
-        });
-      }
-
       rowDiv.appendChild(colDiv);
     }
 
