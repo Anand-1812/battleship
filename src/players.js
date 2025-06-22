@@ -1,7 +1,7 @@
-import { GameBoard } from "./gameBoard";
+import { GameBoard } from "./game_board.js";
 
 // Player Class
-class Player {
+export class Player {
   constructor(name) {
     // each player will have a new gameboard
     this.name = name;

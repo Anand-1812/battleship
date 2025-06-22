@@ -1,4 +1,4 @@
-import { Ship } from "./ship";
+import { Ship } from "./ship.js";
 
 const shipConfig = [
   { name: "Carrier", length: 3 },
