@@ -1,5 +1,34 @@
 import { Ship } from "./ship";
 
+const shipConfig = [
+  { name: "Carrier", length: 3 },
+  { name: "Battleship", length: 2 },
+  { name: "Cruiser", length: 2 },
+  { name: "Submarine", length: 1 },
+  { name: "Destroyer", length: 1 },
+  { name: "Death Fire", length: 1 }
+];
+
+export function randomlyPlaceShips(gameboard) {
+  shipConfig.forEach(({ length }) => {
+    let placed = false;
+
+    while (!placed) {
+      const x = Math.floor(Math.random() * 10);
+      const y = Math.floor(Math.random() * 10);
+
+      const direction = Math.random() < 0.5 ? "horizontal" : "vertical";
+
+      try {
+        gameboard.placeShips(x, y, length, direction);
+        placed = true;
+      } catch (e) {
+        console.log(`Error: ${e}`);
+      }
+    }
+  });
+}
+
 // Game Board Class
 export class GameBoard {
   constructor() {
