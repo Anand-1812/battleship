@@ -3,7 +3,6 @@ import { createGrid } from "./create_grid.js";
 import { Player } from "./players.js";
 import { randomlyPlaceShips } from "./game_board.js";
 import { renderBoard } from "./render_board.js";
-
 const userGrid = document.querySelector(".user-grid")
 const botGrid = document.querySelector(".bot-grid")
 
@@ -19,4 +18,7 @@ renderBoard(user.gameboard.grid, userGrid);
 const bot = new Player('Bot');
 
 randomlyPlaceShips(bot.gameboard);
-console.log(bot.gameboard.ships);
+
+bot.gameboard.getCoordinates(".bot-grid", (x, y) => {
+  user.attack(bot, x, y);
+});
