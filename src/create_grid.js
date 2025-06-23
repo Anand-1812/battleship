@@ -9,8 +9,8 @@ export function createGrid(container, size = 10, isUser = false) {
     for (let j = 0; j < size; j++) {
       const colDiv = document.createElement("div");
       colDiv.className = "gridCol";
-      colDiv.dataset.row = i;
-      colDiv.dataset.col = j;
+      colDiv.dataset.x = i;
+      colDiv.dataset.y = j;
 
       rowDiv.appendChild(colDiv);
     }
