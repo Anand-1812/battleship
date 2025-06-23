@@ -9,6 +9,8 @@ export class Player {
   }
 
   attack(opponent, x, y) {
-    return opponent.gameboard.receiveAttack(x, y);
+    const result = opponent.gameboard.receiveAttack(x, y);
+    console.log(`${this.name} attacked (${x}, ${y}) and it's a ${result}`);
+    
   }
 }
