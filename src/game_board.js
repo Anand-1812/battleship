@@ -1,12 +1,11 @@
 import { Ship } from "./ship.js";
 
 const shipConfig = [
-  { name: "Carrier", length: 3 },
-  { name: "Battleship", length: 2 },
-  { name: "Cruiser", length: 2 },
-  { name: "Submarine", length: 1 },
-  { name: "Destroyer", length: 1 },
-  { name: "Death Fire", length: 1 }
+  { name: "Carrier", length: 5 },
+  { name: "Battleship", length: 4 },
+  { name: "Cruiser", length: 3 },
+  { name: "Submarine", length: 2 },
+  { name: "Destroyer", length: 2 }
 ];
 
 export function randomlyPlaceShips(gameboard) {
