@@ -84,4 +84,16 @@ export class GameBoard {
   allShipsSunks() {
     return this.ships.every(({ ship }) => ship.isSunk);
   }
+
+  getCoordinates(gridSelector, onClickCallback) {
+    const userCol = document.querySelectorAll(`${gridSelector} .gridCol`);
+    userCol.forEach((col) => {
+      col.addEventListener("click", () => {
+        const x = Number(col.dataset.x);
+        const y = Number(col.dataset.y);
+
+        onClickCallback(x, y);
+      });
+    })
+  }
 }
