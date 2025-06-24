@@ -86,3 +86,35 @@ body {
   background-color: #f2f2f2;
   cursor: pointer;
 }
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-section button {
+  width: 100px;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.randomize,
+.start {
+  width: 50px;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.randomize:hover,
+.start:hover {
+  background-color: grey;
+}
