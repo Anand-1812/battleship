@@ -1,35 +1,39 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Template</title>
-</head>
+  <body>
+    <header class="navbar">
+      <nav class="nav">
+        <h1 class="name">Battleship</h1>
+        <p class="display">Place your ships</p>
+      </nav>
+    </header>
 
-<body>
-  <header class="navbar">
-    <nav class="nav">
-      <h1 class="name">Battleship</h1>
-      <p class="display">Place your ships</p>
-    </nav>
-  </header>
-
-  <!--- Grid for ships-->
-  <main class="ship-grid">
-    <div class="button-section">
-      <button class="randomize">Random</button>
-      <button class="start">Start</button>
-    </div>
-    <div class="user-section">
-      <h2>Your grid</h2>
-      <div class="user-grid grid"></div>
-    </div>
-    <div class="bot-section">
-      <h2>Opponent's grid</h2>
-      <div class="bot-grid grid"></div>
-    </div>
-  </main>
-</body>
-
+    <!--- Grid for ships-->
+    <main class="ship-grid">
+      <!-- left side of the game -->
+      <div class="left-side">
+        <div class="button-section">
+          <button class="randomize">Random</button>
+          <button class="start">Start</button>
+        </div>
+        <div class="user-section">
+          <h2>Your grid</h2>
+          <div class="user-grid grid"></div>
+        </div>
+      </div>
+      <!--- right side of the game --->
+      <div class="right-side">
+        <div class="bot-section">
+          <h2>Opponent's grid</h2>
+          <div class="bot-grid grid"></div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
