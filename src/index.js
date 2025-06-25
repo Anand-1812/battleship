@@ -3,6 +3,7 @@ import { createGrid } from './create_grid.js';
 import { Player } from './players.js';
 import { randomlyPlaceShips } from './game_board.js';
 import { renderBoard } from './render_board.js';
+import { startGame } from './start_game.js';
 const userGrid = document.querySelector('.user-grid');
 const botGrid = document.querySelector('.bot-grid');
 
@@ -11,7 +12,7 @@ createGrid(userGrid, 10, true);
 createGrid(botGrid, 10, false);
 
 const user = new Player('User');
-
+const bot = new Player('Bot');
 // randomly place ship
 const randomButton = document.querySelector('.randomize');
 randomButton.addEventListener('click', () => {
@@ -21,14 +22,7 @@ randomButton.addEventListener('click', () => {
 
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
-  const displayTurn = document.querySelector('.display');
-  displayTurn.textContent = 'Your turn(attack)';
+  startGame(user, bot);
 });
-
-const bot = new Player('Bot');
 
 randomlyPlaceShips(bot.gameboard);
-
-bot.gameboard.getCoordinates('.bot-grid', (x, y) => {
-  user.attack(bot, x, y);
-});
