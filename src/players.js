@@ -1,4 +1,4 @@
-import { GameBoard } from "./game_board.js";
+import { GameBoard } from './game_board.js';
 
 // Player Class
 export class Player {
@@ -11,6 +11,6 @@ export class Player {
   attack(opponent, x, y) {
     const result = opponent.gameboard.receiveAttack(x, y);
     console.log(`${this.name} attacked (${x}, ${y}) and it's a ${result}`);
-    
+    return result;
   }
 }
