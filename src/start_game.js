@@ -8,7 +8,7 @@ export function startGame(user, bot) {
   randomlyPlaceShips(bot.gameboard);
   bot.gameboard.getCoordinates('.bot-grid', (x, y) => {
     const result = user.attack(bot, x, y);
-    const cell = botGrid.querySelector(`[data-x="${x}"][data-y="${x}"]`);
+    const cell = botGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
     if (result === 'hit') {
       cell.style.backgroundColor = 'red';
