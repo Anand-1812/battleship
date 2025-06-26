@@ -24,5 +24,3 @@ const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
   startGame(user, bot);
 });
-
-randomlyPlaceShips(bot.gameboard);

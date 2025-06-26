@@ -1,11 +1,11 @@
-import { Ship } from "./ship.js";
+import { Ship } from './ship.js';
 
 const shipConfig = [
-  { name: "Carrier", length: 5 },
-  { name: "Battleship", length: 4 },
-  { name: "Cruiser", length: 3 },
-  { name: "Submarine", length: 2 },
-  { name: "Destroyer", length: 2 }
+  { name: 'Carrier', length: 5 },
+  { name: 'Battleship', length: 4 },
+  { name: 'Cruiser', length: 3 },
+  { name: 'Submarine', length: 2 },
+  { name: 'Destroyer', length: 2 },
 ];
 
 export function randomlyPlaceShips(gameboard) {
@@ -16,7 +16,7 @@ export function randomlyPlaceShips(gameboard) {
       const x = Math.floor(Math.random() * 10);
       const y = Math.floor(Math.random() * 10);
 
-      const direction = Math.random() < 0.5 ? "horizontal" : "vertical";
+      const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical';
 
       try {
         gameboard.placeShips(x, y, length, direction);
@@ -31,7 +31,7 @@ export function randomlyPlaceShips(gameboard) {
 // Game Board Class
 export class GameBoard {
   constructor() {
-    this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
+    this.grid = Array.from({ length: 10 }, () => Array(10).fill(null));
     this.ships = [];
     this.missedShots = [];
     this.attacked = new Set();
@@ -42,13 +42,12 @@ export class GameBoard {
     const ship = new Ship(length);
     const coordinates = [];
 
-    for (let i = 0;i < length;i++) {
-
+    for (let i = 0; i < length; i++) {
       let xi = x + (direction === 'horizontal' ? i : 0);
       let yi = y + (direction === 'vertical' ? i : 0);
 
       if (xi >= 10 || yi >= 10 || this.grid[yi][xi] !== null) {
-        throw new Error("Invalid ship placement.");
+        throw new Error('Invalid ship placement.');
       }
 
       coordinates.push([xi, yi]);
@@ -58,27 +57,27 @@ export class GameBoard {
       this.grid[yi][xi] = ship;
     });
 
-    this.ships.push({ ship, coordinates} );
+    this.ships.push({ ship, coordinates });
   }
 
   receiveAttack(x, y) {
     const key = `${x}, ${y}`;
     if (this.attacked.has(key)) {
-      return "already attacked";
+      return 'already attacked';
     }
     this.attacked.add(key);
 
-    for (const {ship, coordinates} of this.ships) {
+    for (const { ship, coordinates } of this.ships) {
       for (const [row, col] of coordinates) {
         if (row === x && col === y) {
           ship.hit();
-          return "hit";
+          return 'hit';
         }
       }
     }
 
     this.missedShots.push([x, y]);
-    return "miss";
+    return 'miss';
   }
 
   allShipsSunks() {
@@ -88,12 +87,12 @@ export class GameBoard {
   getCoordinates(gridSelector, onClickCallback) {
     const userCol = document.querySelectorAll(`${gridSelector} .gridCol`);
     userCol.forEach((col) => {
-      col.addEventListener("click", () => {
+      col.addEventListener('click', () => {
         const x = Number(col.dataset.x);
         const y = Number(col.dataset.y);
 
         onClickCallback(x, y);
       });
-    })
+    });
   }
 }
