@@ -3,7 +3,8 @@ import { createGrid } from './create_grid.js';
 import { Player } from './players.js';
 import { randomlyPlaceShips } from './game_board.js';
 import { renderBoard } from './render_board.js';
-import { startGame } from './start_game.js';
+import { StartGame } from './start_game.js';
+
 const userGrid = document.querySelector('.user-grid');
 const botGrid = document.querySelector('.bot-grid');
 
@@ -20,7 +21,9 @@ randomButton.addEventListener('click', () => {
   renderBoard(user.gameboard.grid, userGrid);
 });
 
+const playGame = new StartGame(user, bot);
+
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
-  startGame(user, bot);
+  playGame.userAttack(user, bot);
 });
