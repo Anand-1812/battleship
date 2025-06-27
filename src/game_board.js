@@ -9,6 +9,11 @@ const shipConfig = [
 ];
 
 export function randomlyPlaceShips(gameboard) {
+  gameboard.grid = Array.from({ length: 10 }, () => Array(10).fill(null));
+  gameboard.ships = [];
+  gameboard.missedShots = [];
+  gameboard.attacked = new Set();
+
   shipConfig.forEach(({ length }) => {
     let placed = false;
 
