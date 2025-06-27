@@ -25,5 +25,5 @@ const playGame = new StartGame(user, bot);
 
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
-  playGame.userAttack(user, bot);
+  playGame.userAttack();
 });
