@@ -14,6 +14,12 @@ createGrid(botGrid, 10, false);
 
 const user = new Player('User');
 const bot = new Player('Bot');
+
+randomlyPlaceShips(bot.gameboard);
+renderBoard(bot.gameboard.grid, botGrid);
+randomlyPlaceShips(user.gameboard);
+renderBoard(user.gameboard.grid, userGrid);
+
 // randomly place ship
 const randomButton = document.querySelector('.randomize');
 randomButton.addEventListener('click', () => {
