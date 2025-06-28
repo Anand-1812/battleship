@@ -19,16 +19,17 @@ randomlyPlaceShips(bot.gameboard);
 randomlyPlaceShips(user.gameboard);
 renderBoard(user.gameboard.grid, userGrid);
 
-// randomly place ship
-const randomButton = document.querySelector('.randomize');
-randomButton.addEventListener('click', () => {
-  randomlyPlaceShips(user.gameboard);
-  renderBoard(user.gameboard.grid, userGrid);
-});
-
 const playGame = new StartGame(user, bot);
 
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
-  playGame.userAttack();
+  startButton.disabled = true;
+});
+
+const randomButton = document.querySelector('.randomize');
+randomButton.addEventListener('click', () => {
+  if (startButton.disabled) return;
+
+  randomlyPlaceShips(user.gameboard);
+  renderBoard(user.gameboard.grid, userGrid);
 });
