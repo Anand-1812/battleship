@@ -16,7 +16,6 @@ const user = new Player('User');
 const bot = new Player('Bot');
 
 randomlyPlaceShips(bot.gameboard);
-renderBoard(bot.gameboard.grid, botGrid);
 randomlyPlaceShips(user.gameboard);
 renderBoard(user.gameboard.grid, userGrid);
 
