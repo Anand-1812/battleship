@@ -85,7 +85,7 @@ export class GameBoard {
     return 'miss';
   }
 
-  static allShipsSunks() {
+  allShipsSunks() {
     return this.ships.every(({ ship }) => ship.isSunk);
   }
 
