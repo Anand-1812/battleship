@@ -31,7 +31,7 @@ export class StartGame {
 
     this.currentTurn = 'bot';
 
-    setTimeout(() => this.botAttack(), 500);
+    setTimeout(() => this.botAttack(), 2000);
   }
 
   botAttack() {
