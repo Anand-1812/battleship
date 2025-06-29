@@ -21,13 +21,16 @@ const playGame = new StartGame(user, bot);
 
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
+  const display = document.querySelector('.display');
+  display.textContent = 'Attack';
+
   startButton.disabled = true;
 });
 
 const randomButton = document.querySelector('.randomize');
 randomButton.addEventListener('click', () => {
   const display = document.querySelector('.display');
-  display.textContent = 'Ships Placed (attack)';
+  display.textContent = 'Ships Placed';
   if (startButton.disabled) return;
 
   randomlyPlaceShips(user.gameboard);
