@@ -22,7 +22,7 @@ const playGame = new StartGame(user, bot);
 const startButton = document.querySelector('.start');
 startButton.addEventListener('click', () => {
   const display = document.querySelector('.display');
-  display.textContent = 'Attack';
+  display.textContent = 'User Turn';
 
   startButton.disabled = true;
 });
