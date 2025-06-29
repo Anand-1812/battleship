@@ -16,8 +16,6 @@ const user = new Player('User');
 const bot = new Player('Bot');
 
 randomlyPlaceShips(bot.gameboard);
-randomlyPlaceShips(user.gameboard);
-renderBoard(user.gameboard.grid, userGrid);
 
 const playGame = new StartGame(user, bot);
 
@@ -28,8 +26,11 @@ startButton.addEventListener('click', () => {
 
 const randomButton = document.querySelector('.randomize');
 randomButton.addEventListener('click', () => {
+  const display = document.querySelector('.display');
+  display.textContent = 'Ships Placed (attack)';
   if (startButton.disabled) return;
 
   randomlyPlaceShips(user.gameboard);
   renderBoard(user.gameboard.grid, userGrid);
+  randomButton.disabled = true;
 });
