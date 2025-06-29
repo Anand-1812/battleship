@@ -20,6 +20,7 @@ export class StartGame {
 
     if (result === 'hit') {
       cell.style.backgroundColor = 'red';
+      display.textContent = 'keep attacking';
       return;
     } else if (result === 'miss') {
       cell.style.backgroundColor = 'blue';
