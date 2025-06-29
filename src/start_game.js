@@ -65,7 +65,7 @@ export class StartGame {
       }
 
       this.currentTurn = 'user';
-      display.textContent = 'User turn(attack)';
+      display.textContent = 'User turn';
     }, 1000);
   }
 }
