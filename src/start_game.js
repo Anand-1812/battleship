@@ -31,38 +31,40 @@ export class StartGame {
 
     this.currentTurn = 'bot';
 
-    setTimeout(() => this.botAttack(), 2000);
+    setTimeout(() => this.botAttack(), 500);
   }
 
   botAttack() {
     const display = document.querySelector('.display');
-    display.textContent = 'Bot turn(attack)';
+    display.textContent = 'Bot turn';
 
-    let x, y, key;
-    do {
-      x = Math.floor(Math.random() * 10);
-      y = Math.floor(Math.random() * 10);
-      key = `${x},${y}`;
-    } while (this.botAttackCoords.has(key));
+    setTimeout(() => {
+      let x, y, key;
+      do {
+        x = Math.floor(Math.random() * 10);
+        y = Math.floor(Math.random() * 10);
+        key = `${x},${y}`;
+      } while (this.botAttackCoords.has(key));
 
-    this.botAttackCoords.add(key);
+      this.botAttackCoords.add(key);
 
-    const userGrid = document.querySelector('.user-grid');
-    const result = this.bot.attack(this.user, x, y);
-    const cell = userGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+      const userGrid = document.querySelector('.user-grid');
+      const result = this.bot.attack(this.user, x, y);
+      const cell = userGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
-    if (result === 'hit') {
-      cell.style.backgroundColor = 'red';
-    } else if (result === 'miss') {
-      cell.style.backgroundColor = 'blue';
-    }
+      if (result === 'hit') {
+        cell.style.backgroundColor = 'red';
+      } else if (result === 'miss') {
+        cell.style.backgroundColor = 'blue';
+      }
 
-    if (this.user.gameboard.allShipsSunks()) {
-      display.textContent = 'Bot Wins🤖';
-      return;
-    }
+      if (this.user.gameboard.allShipsSunks()) {
+        display.textContent = 'Bot Wins🤖';
+        return;
+      }
 
-    this.currentTurn = 'user';
-    display.textContent = 'User turn(attack)';
+      this.currentTurn = 'user';
+      display.textContent = 'User turn(attack)';
+    }, 1000);
   }
 }
