@@ -20,18 +20,17 @@ export class StartGame {
 
     if (result === 'hit') {
       cell.style.backgroundColor = 'red';
+      return;
     } else if (result === 'miss') {
       cell.style.backgroundColor = 'blue';
+      this.currentTurn = 'bot';
+      setTimeout(() => this.botAttack(), 500);
     }
 
     if (this.bot.gameboard.allShipsSunks()) {
       display.textContent = 'User wins';
       return;
     }
-
-    this.currentTurn = 'bot';
-
-    setTimeout(() => this.botAttack(), 500);
   }
 
   botAttack() {
@@ -54,6 +53,8 @@ export class StartGame {
 
       if (result === 'hit') {
         cell.style.backgroundColor = 'red';
+        setTimeout(() => this.botAttack(), 1000);
+        return;
       } else if (result === 'miss') {
         cell.style.backgroundColor = 'blue';
       }
