@@ -5,11 +5,10 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arvo', serif;
   height: 100vh;
-  font-family: "Arvo", serif;
   background-color: #555879;
-  color: #F4EBD3;
+  color: #f4ebd3;
 }
 
 /* Navbar */
@@ -24,13 +23,13 @@ body {
   font-size: 1.2rem;
 }
 
-.nav>p {
+.nav > p {
   padding: 12px;
   width: 200px;
   text-align: center;
   border-radius: 10px;
-  background-color: #98A1BC;
-  color: #212121;
+  background-color: #6c88c4;
+  color: #f4ebd3;
 }
 
 .ship-grid {
@@ -43,20 +42,21 @@ body {
   flex-wrap: wrap;
 }
 
-.left-side {
+.left-side,
+.right-side {
   width: 45%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.left-side {
+  flex-direction: row;
   gap: 20px;
 }
 
 .right-side {
-  width: 45%;
-  display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .user-section,
@@ -88,22 +88,22 @@ body {
 .gridCol {
   width: 35px;
   height: 35px;
-  border-right: 1.3px solid #F4EBD3;
-  border-bottom: 1.3px solid #F4EBD3;
-  transition: background-color 0.2s;
+  background-color: #444766;
+  border-right: 1.3px solid #f4ebd3;
+  border-bottom: 1.3px solid #f4ebd3;
 }
 
 .gridCol:first-child {
-  border-left: 1.3px solid #F4EBD3;
+  border-left: 1.3px solid #f4ebd3;
 }
 
 .gridRow:first-of-type .gridCol {
-  border-top: 1.3px solid #F4EBD3;
+  border-top: 1.3px solid #f4ebd3;
 }
 
 .gridCol:hover {
-  background-color: #C0C9EE;
   cursor: pointer;
+  background-color: #6c88c4;
 }
 
 .button-section {
@@ -116,20 +116,32 @@ body {
 }
 
 .randomize,
-.start, .reset {
-  width: 100px;
-  height: 40px;
+.start,
+.reset {
+  width: 120px;
+  height: 42px;
   font-size: 16px;
   padding: 8px 16px;
   text-align: center;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 8px;
-  background-color: #98A1BC;
+  background-color: #6c88c4;
+  color: #f4ebd3;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .randomize:hover,
-.start:hover, .reset:hover {
-  background-color: #e9e9e9;
+.start:hover,
+.reset:hover {
+  background-color: #a0b8e2;
+  color: #212121;
+}
+
+.gridCol, .randomize, .start, .reset {
+  transition: all 0.3s ease;
+}
+
+.randomize, .start, .reset {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
