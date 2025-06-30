@@ -25,7 +25,7 @@ body {
 
 .nav > p {
   padding: 12px;
-  width: 200px;
+  width: 250px;
   text-align: center;
   border-radius: 10px;
   background-color: #6c88c4;
@@ -144,4 +144,50 @@ body {
 
 .randomize, .start, .reset {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.gridCol.hit-cell:hover,
+.gridCol.miss-cell:hover,
+.gridCol.ship-cell:hover {
+  cursor: default;
+  background-color: inherit;
+}
+
+.hit-cell {
+  background-color: #e84a5f;
+  animation: hitFlash 0.3s ease-in-out;
+}
+
+.miss-cell {
+  background-color: rgba(244, 235, 211, 0.3);
+}
+
+@keyframes hitFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Optional: shake animation for misses */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Game over flash (for display text) */
+.game-over {
+  animation: flashText 1s ease-in-out;
+}
+
+@keyframes flashText {
+  0% { color: #f4ebd3; }
+  50% { color: #ffc857; }
+  100% { color: #f4ebd3; }
 }

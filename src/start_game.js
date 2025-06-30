@@ -3,40 +3,50 @@ export class StartGame {
     this.user = user;
     this.bot = bot;
     this.botAttackCoords = new Set();
+    this.userAttackCoords = new Set();
     this.currentTurn = 'user';
+    this.isGameOver = false;
 
+    // Enable click handler on bot grid
     this.bot.gameboard.getCoordinates('.bot-grid', (x, y) => {
       this.handleUserClick(x, y);
     });
+
+    this.display = document.querySelector('.display');
+    this.botGrid = document.querySelector('.bot-grid');
+    this.userGrid = document.querySelector('.user-grid');
   }
 
   handleUserClick(x, y) {
-    if (this.currentTurn !== 'user') return;
-    const display = document.querySelector('.display');
+    if (this.currentTurn !== 'user' || this.isGameOver) return;
 
-    const botGrid = document.querySelector('.bot-grid');
+    const key = `${x},${y}`;
+    if (this.userAttackCoords.has(key)) return;
+    this.userAttackCoords.add(key);
+
+    const cell = this.botGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
     const result = this.user.attack(this.bot, x, y);
-    const cell = botGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
-    if (result === 'hit') {
-      cell.style.backgroundColor = '#e84a5f';
-      display.textContent = 'keep attacking';
-      return;
-    } else if (result === 'miss') {
-      cell.style.backgroundColor = '#f4ebd3';
-      this.currentTurn = 'bot';
-      setTimeout(() => this.botAttack(), 500);
-    }
+    this.markCell(cell, result);
 
     if (this.bot.gameboard.allShipsSunks()) {
-      display.textContent = 'User wins';
+      this.endGame('🎉 User Wins!');
       return;
+    }
+
+    if (result === 'miss') {
+      this.display.textContent = 'You missed! Bot’s turn...';
+      this.currentTurn = 'bot';
+      setTimeout(() => this.botAttack(), 500);
+    } else {
+      this.display.textContent = '🎯 Hit! Attack again!';
     }
   }
 
   botAttack() {
-    const display = document.querySelector('.display');
-    display.textContent = 'Bot turn';
+    if (this.isGameOver) return;
+
+    this.display.textContent = '🤖 Bot is thinking...';
 
     setTimeout(() => {
       let x, y, key;
@@ -47,26 +57,52 @@ export class StartGame {
       } while (this.botAttackCoords.has(key));
 
       this.botAttackCoords.add(key);
-
-      const userGrid = document.querySelector('.user-grid');
+      const cell = this.userGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
       const result = this.bot.attack(this.user, x, y);
-      const cell = userGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
-      if (result === 'hit') {
-        cell.style.backgroundColor = '#e84a5f';
-        setTimeout(() => this.botAttack(), 1000);
-        return;
-      } else if (result === 'miss') {
-        cell.style.backgroundColor = '#f4ebd3';
-      }
+      this.markCell(cell, result);
 
       if (this.user.gameboard.allShipsSunks()) {
-        display.textContent = 'Bot Wins🤖';
+        this.endGame('🤖 Bot Wins!');
         return;
       }
 
-      this.currentTurn = 'user';
-      display.textContent = 'User turn';
+      if (result === 'miss') {
+        this.display.textContent = 'Bot missed! Your turn 🔁';
+        this.currentTurn = 'user';
+      } else {
+        this.display.textContent = 'Bot hit you! 💥';
+        setTimeout(() => this.botAttack(), 800);
+      }
     }, 1000);
+  }
+
+  markCell(cell, result) {
+    if (!cell) return;
+
+    if (result === 'hit') {
+      cell.classList.add('hit-cell');
+    } else if (result === 'miss') {
+      cell.classList.add('miss-cell', 'shake');
+      setTimeout(() => cell.classList.remove('shake'), 300);
+    }
+  }
+
+  endGame(message) {
+    this.display.textContent = message;
+    this.display.classList.add('game-over');
+    this.isGameOver = true;
+    this.disableGridClicks();
+
+    setTimeout(() => {
+      this.display.classList.remove('game-over');
+    }, 2000);
+  }
+
+  disableGridClicks() {
+    const botCells = this.botGrid.querySelectorAll('.gridCol');
+    botCells.forEach(cell => {
+      cell.style.pointerEvents = 'none';
+    });
   }
 }
