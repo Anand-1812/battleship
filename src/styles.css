@@ -8,6 +8,8 @@ body {
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   font-family: "Arvo", serif;
+  background-color: #555879;
+  color: #F4EBD3;
 }
 
 /* Navbar */
@@ -24,10 +26,11 @@ body {
 
 .nav>p {
   padding: 12px;
-  background-color: #f0f0f0;
   width: 200px;
   text-align: center;
   border-radius: 10px;
+  background-color: #98A1BC;
+  color: #555879;
 }
 
 .ship-grid {
@@ -85,18 +88,17 @@ body {
 .gridCol {
   width: 35px;
   height: 35px;
-  background-color: #fff;
-  border-right: 1.3px solid black;
-  border-bottom: 1.3px solid black;
+  border-right: 1.3px solid #F4EBD3;
+  border-bottom: 1.3px solid #F4EBD3;
   transition: background-color 0.2s;
 }
 
 .gridCol:first-child {
-  border-left: 1.3px solid black;
+  border-left: 1.3px solid #F4EBD3;
 }
 
 .gridRow:first-of-type .gridCol {
-  border-top: 1.3px solid black;
+  border-top: 1.3px solid #F4EBD3;
 }
 
 .gridCol:hover {
