@@ -19,11 +19,11 @@ export class StartGame {
     const cell = botGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
     if (result === 'hit') {
-      cell.style.backgroundColor = 'red';
+      cell.style.backgroundColor = '#C0C9EE';
       display.textContent = 'keep attacking';
       return;
     } else if (result === 'miss') {
-      cell.style.backgroundColor = 'blue';
+      cell.style.backgroundColor = '#F4EBD3';
       this.currentTurn = 'bot';
       setTimeout(() => this.botAttack(), 500);
     }
@@ -53,11 +53,11 @@ export class StartGame {
       const cell = userGrid.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
       if (result === 'hit') {
-        cell.style.backgroundColor = 'red';
+        cell.style.backgroundColor = '#C0C9EE';
         setTimeout(() => this.botAttack(), 1000);
         return;
       } else if (result === 'miss') {
-        cell.style.backgroundColor = 'blue';
+        cell.style.backgroundColor = '#F4EBD3';
       }
 
       if (this.user.gameboard.allShipsSunks()) {
