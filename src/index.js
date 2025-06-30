@@ -37,3 +37,36 @@ randomButton.addEventListener('click', () => {
   renderBoard(user.gameboard.grid, userGrid);
   randomButton.disabled = true;
 });
+
+const resetButton = document.querySelector('.reset');
+resetButton.addEventListener('click', () => {
+  // 1. Clear all cells
+  userGrid.innerHTML = '';
+  botGrid.innerHTML = '';
+
+  // 2. Recreate the grid
+  createGrid(userGrid, 10, true);
+  createGrid(botGrid, 10, false);
+
+  // 3. Recreate players
+  const newUser = new Player('User');
+  const newBot = new Player('Bot');
+  randomlyPlaceShips(newBot.gameboard);
+
+  // 4. Re-render if random was already used
+  if (!randomButton.disabled) {
+    randomlyPlaceShips(newUser.gameboard);
+    renderBoard(newUser.gameboard.grid, userGrid);
+  }
+
+  // 5. Reinitialize game
+  const newGame = new StartGame(newUser, newBot);
+
+  // 6. Reset display
+  const display = document.querySelector('.display');
+  display.textContent = 'Game Reset';
+
+  // 7. Enable buttons again
+  startButton.disabled = false;
+  randomButton.disabled = false;
+});
