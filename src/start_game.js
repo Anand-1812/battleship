@@ -1,3 +1,8 @@
+import { createGrid } from './create_grid.js';
+import { Player } from './players.js';
+import { randomlyPlaceShips } from './game_board.js';
+import { renderBoard } from './render_board.js';
+
 export class StartGame {
   constructor(user, bot) {
     this.user = user;
@@ -7,14 +12,15 @@ export class StartGame {
     this.currentTurn = 'user';
     this.isGameOver = false;
 
-    // Enable click handler on bot grid
-    this.bot.gameboard.getCoordinates('.bot-grid', (x, y) => {
-      this.handleUserClick(x, y);
-    });
-
     this.display = document.querySelector('.display');
     this.botGrid = document.querySelector('.bot-grid');
     this.userGrid = document.querySelector('.user-grid');
+    this.startButton = document.querySelector('.start');
+    this.randomButton = document.querySelector('.randomize');
+
+    this.bot.gameboard.getCoordinates('.bot-grid', (x, y) => {
+      this.handleUserClick(x, y);
+    });
   }
 
   handleUserClick(x, y) {
